@@ -24,7 +24,8 @@ const Ad1: React.FC = () => {
           Nabízíme sudy ve velikostech 15L, 30L a 50L – pro každou příležitost.
         </p>
         <p className="text-2xl font-semibold max-w-2xl">
-          "Čerstvost v každém doušku přímo pro Vás – plníme na míru!"
+          &ldquo;Čerstvost v každém doušku přímo pro Vás – plníme na
+          míru!&rdquo;
         </p>
       </div>
     </section>
