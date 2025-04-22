@@ -75,7 +75,7 @@ const CurrentBeerOffer: React.FC = () => {
                 <div className="flex items-center gap-2 text-gray-700 font-medium">
                   <span>Skladem:</span>
                   <img
-                    src="/images/lahev.svg"
+                    src="/images/Artboard 1.png"
                     alt="lahvová ikona"
                     className="w-4 h-4"
                   />
@@ -84,7 +84,7 @@ const CurrentBeerOffer: React.FC = () => {
                 <div className="flex items-center gap-2 text-gray-700 font-medium">
                   <span>Na plnění na počkání:</span>
                   <img
-                    src="/images/sud.svg"
+                    src="/images/art 2.png"
                     alt="sudová ikona"
                     className="w-4 h-4"
                   />
