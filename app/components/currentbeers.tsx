@@ -20,6 +20,12 @@ const sliderSettings = {
 const CurrentBeerOffer: React.FC = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [maxHeight, setMaxHeight] = useState<number>(0);
+  const [openDropdowns, setOpenDropdowns] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  // Možnosti velikosti sudů
+  const kegSizes = ["15l", "20l", "30l", "50l"];
 
   const updateHeights = () => {
     const heights = cardRefs.current.map((el) => (el ? el.offsetHeight : 0));
@@ -31,6 +37,14 @@ const CurrentBeerOffer: React.FC = () => {
     window.addEventListener("resize", updateHeights);
     return () => window.removeEventListener("resize", updateHeights);
   }, []);
+
+  // Toggle dropdown for specific beer
+  const toggleDropdown = (beerName: string) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [beerName]: !prev[beerName],
+    }));
+  };
 
   // Filtrace pouze dostupných piv
   const availableBeers = beers.filter((beer) => beer.available);
@@ -70,32 +84,89 @@ const CurrentBeerOffer: React.FC = () => {
                 <p className="text-gray-700 text-center">{beer.description}</p>
               </div>
 
-              {/* Spodní část s info a tlačítkem */}
-              <div className="mt-4 flex flex-col items-center gap-2">
-                <div className="flex items-center gap-2 text-gray-700 font-medium">
-                  <span>Skladem:</span>
-                  <img
-                    src="/images/Artboard 1.png"
-                    alt="lahvová ikona"
-                    className="w-4 h-4"
-                  />
-                  <span>1,5l</span>
+              {/* Spodní část s balením */}
+              <div className="mt-6">
+                {/* Standardizovaný kontejner pro balení */}
+                <div className="flex flex-col space-y-5">
+                  {/* Box pro sudy - vedle sebe */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center space-x-2">
+                      <img
+                        src="/images/art 2.png"
+                        alt="sudová ikona"
+                        className="w-8 h-8"
+                        style={{ filter: "brightness(0)" }}
+                      />
+                      <span className="font-medium text-gray-800">Sudy:</span>
+                    </div>
+                    <div className="relative">
+                      <button
+                        onClick={() => toggleDropdown(beer.name)}
+                        className="bg-white border border-gray-300 rounded-md text-gray-700 px-3 py-1.5 flex items-center justify-between hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors duration-150 min-w-[100px]"
+                      >
+                        <span>Velikost</span>
+                        <svg
+                          className={`w-4 h-4 ml-1 transition-transform duration-200 ${
+                            openDropdowns[beer.name] ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </button>
+
+                      {openDropdowns[beer.name] && (
+                        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-sm">
+                          <ul className="divide-y divide-gray-100">
+                            {kegSizes.map((size) => (
+                              <li
+                                key={size}
+                                className="px-3 py-2 hover:bg-red-600 hover:text-white cursor-pointer text-center transition-colors duration-150"
+                                onClick={() => toggleDropdown(beer.name)}
+                              >
+                                {size}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Box pro lahve - vedle sebe */}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center space-x-2">
+                      <img
+                        src="/images/Artboard 1.png"
+                        alt="lahvová ikona"
+                        className="w-8 h-8"
+                        style={{ filter: "brightness(0)" }}
+                      />
+                      <span className="font-medium text-gray-800">Lahve:</span>
+                    </div>
+                    <div className="bg-white border border-gray-300 rounded-md text-gray-700 px-3 py-1.5 text-center min-w-[100px]">
+                      1,5l
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-700 font-medium">
-                  <span>Na plnění na počkání:</span>
-                  <img
-                    src="/images/art 2.png"
-                    alt="sudová ikona"
-                    className="w-4 h-4"
-                  />
-                  <span>15l / 20l / 30l / 50l</span>
+
+                {/* Tlačítko koupit */}
+                <div className="mt-6">
+                  <a
+                    href="#"
+                    className="block w-full border border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 rounded text-center transition-colors duration-150"
+                  >
+                    Koupit online
+                  </a>
                 </div>
-                <a
-                  href="#"
-                  className="block border border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 px-4 rounded text-center"
-                >
-                  Koupit online
-                </a>
               </div>
             </div>
           </div>

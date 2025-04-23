@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Fly from "../components/fly";
 
 export default function Home() {
   useEffect(() => {
@@ -34,9 +35,10 @@ export default function Home() {
       <Navbar />
 
       {/* Header s úvodním textem */}
-      <header className="bg-red-600 text-white py-6 shadow-md">
+      <header className="bg-red-600 text-white py-6 shadow-md relative overflow-hidden">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold">Kam na Mouchu</h1>
+          <Fly />
           <p className="mt-2 text-lg">
             Objevte místa, kde si můžete vychutnat naše čerstvě čepované pivo.
           </p>
