@@ -22,7 +22,7 @@ export const beers: Beer[] = [
     abv: "4,3% obj.",
     description:
       "Český ležák zelené barvy, vyrobený z českých sladů k příležitosti Velikonoc. Použito přírodní barvivo v BIO kvalitě.",
-    available: true,
+    available: false,
   },
   {
     image: "/images/etikety/nemecka.png",
@@ -54,5 +54,29 @@ export const beers: Beer[] = [
     description:
       "Pivo pražských patriotů, které stojí za ochutnání. Trojí chmelení a plná chuť vás určitě nezklame.",
     available: true,
+  },
+  {
+    image: "/images/etikety/blackfly.png",
+    name: "Black Fly 11",
+    abv: "5,2% obj.",
+    description:
+      "Rázný černý ležák vyrobený z pěti druhů sladů a tří chmelů. Jemná hořkost a čokoládový dozvuk na konci dodá pivu tu správnou plnou chuť.",
+    available: false,
+  },
+  {
+    image: "/images/etikety/Mucholapka.png",
+    name: "Mucholapka 10",
+    abv: "3,7% obj.",
+    description:
+      "Světlé výčepní pivo uvařeno ze dvou druhů českého chmele. Okouzlí Vás vyšší hořkostí, nízkým obsahem alkoholu a nebezpečnou pitelností.",
+    available: false,
+  },
+  {
+    image: "/images/etikety/videnska.png",
+    name: "Vídeňská Moucha 12",
+    abv: "4,8% obj.",
+    description:
+      "Typický vídeňský ležák vyrobený převážně z vídeňského sladu, třikrát chmelený. Specifický svou jemnou chutí a doznívající hořkostí.",
+    available: false,
   },
 ];
